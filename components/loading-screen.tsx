@@ -56,12 +56,6 @@ export function LoadingScreen() {
           </p>
           <p className="text-sm text-gray-400 mt-2">Merging creativity, technology and psychology</p>
         </div>
-        
-        <div className="flex flex-col gap-2 mt-6">
-          <div className="w-2 h-2 rounded-full bg-red-500 animate-bounce"></div>
-          <div className="w-2 h-2 rounded-full bg-cyan-400 animate-bounce" style={{ animationDelay: "0.1s" }}></div>
-          <div className="w-2 h-2 rounded-full bg-lime-400 animate-bounce" style={{ animationDelay: "0.2s" }}></div>
-        </div>
       </div>
     </div>
   )
