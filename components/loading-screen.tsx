@@ -51,11 +51,10 @@ export function LoadingScreen() {
         </div>
         
         <div className="flex flex-col items-center gap-4 mt-4">
-          <div className="text-center">
-            <p className="text-lg text-gray-300 mb-2">Which card do you wa<span className="text-red-600">nt</span></p>
-            <p className="text-lg text-gray-300">to pick ?</p>
-          </div>
-          <p className="text-3xl font-bold text-red-600">I know I'm Unique.</p>
+          <p className="text-2xl font-semibold text-gray-300">
+            Loading<span className="text-red-600">...</span> I know I'm <span className="text-red-600">Unique</span>
+          </p>
+          <p className="text-sm text-gray-400 mt-2">Merging creativity, technology and psychology</p>
         </div>
         
         <div className="flex flex-col gap-2 mt-6">
