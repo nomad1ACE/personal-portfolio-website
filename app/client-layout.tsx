@@ -18,9 +18,6 @@ function Navigation() {
       <Link href="/" className="text-gray-300 hover:text-white transition-colors">
         Home
       </Link>
-      <Link href="/projects" className="text-gray-300 hover:text-white transition-colors">
-        Projects
-      </Link>
       <Link href="/about" className="text-gray-300 hover:text-white transition-colors">
         About
       </Link>
