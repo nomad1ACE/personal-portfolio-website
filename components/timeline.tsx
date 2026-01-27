@@ -74,14 +74,14 @@ const getGlow = (color: string) => {
 
 export default function Timeline() {
   return (
-    <div className="py-24 bg-zinc-900">
-      <div className="max-w-4xl mx-auto px-6 lg:px-8">
-        <h2 className="text-4xl md:text-5xl font-bold text-white mb-16 text-center">My Journey</h2>
+    <div className="py-12 md:py-24 bg-zinc-900">
+      <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
+        <h2 className="text-3xl md:text-5xl font-bold text-white mb-12 md:mb-16 text-center">My Journey</h2>
 
         <div className="relative">
           {/* Vertical Line */}
           <div
-            className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-red-600 via-cyan-400 to-[#B8E986] to-transparent opacity-100"
+            className="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 w-1 h-full bg-gradient-to-b from-red-600 via-cyan-400 to-[#B8E986] to-transparent opacity-100"
             style={{
               backgroundImage:
                 "linear-gradient(to bottom, rgb(220, 38, 38), rgb(34, 211, 238), rgb(184, 233, 134), transparent)",
@@ -89,11 +89,11 @@ export default function Timeline() {
             }}
           ></div>
 
-          <div className="space-y-12 opacity-40 blur-sm pointer-events-none mb-8">
+          <div className="space-y-8 md:space-y-12 opacity-40 blur-sm pointer-events-none mb-8">
             {preTimelineEvents.map((event, index) => (
-              <div key={`pre-${index}`} className={`flex ${index % 2 === 0 ? "flex-row" : "flex-row-reverse"}`}>
+              <div key={`pre-${index}`} className={`flex md:${index % 2 === 0 ? "flex-row" : "flex-row-reverse"} flex-row`}>
                 {/* Content */}
-                <div className={`w-1/2 ${index % 2 === 0 ? "pr-12 text-right" : "pl-12 text-left"}`}>
+                <div className={`md:w-1/2 w-full ${index % 2 === 0 ? "md:pr-12 md:text-right text-left" : "md:pl-12 md:text-left text-left"} pl-12 md:pl-0`}>
                   <div className="p-6 bg-zinc-800 rounded-lg border border-zinc-700">
                     <p className={`text-sm font-semibold mb-2 ${colorMap[event.color]}`}>{event.year}</p>
                     <h3 className="text-xl font-bold text-white mb-2">{event.title}</h3>
@@ -119,16 +119,16 @@ export default function Timeline() {
                 </div>
 
                 {/* Empty Space */}
-                <div className="w-1/2"></div>
+                <div className="hidden md:block md:w-1/2"></div>
               </div>
             ))}
           </div>
 
-          <div className="space-y-12">
+          <div className="space-y-8 md:space-y-12">
             {timelineEvents.map((event, index) => (
-              <div key={index} className={`flex ${index % 2 === 0 ? "flex-row" : "flex-row-reverse"}`}>
+              <div key={index} className={`flex md:${index % 2 === 0 ? "flex-row" : "flex-row-reverse"} flex-row`}>
                 {/* Content */}
-                <div className={`w-1/2 ${index % 2 === 0 ? "pr-12 text-right" : "pl-12 text-left"}`}>
+                <div className={`md:w-1/2 w-full ${index % 2 === 0 ? "md:pr-12 md:text-right text-left" : "md:pl-12 md:text-left text-left"} pl-12 md:pl-0`}>
                   <div className="p-6 bg-zinc-800 rounded-lg border border-zinc-700 hover:border-zinc-600 transition-all duration-300 hover:shadow-lg hover:shadow-zinc-700/50">
                     <p className={`text-sm font-semibold mb-2 ${colorMap[event.color]}`}>{event.year}</p>
                     <h3 className="text-xl font-bold text-white mb-2">{event.title}</h3>
@@ -154,13 +154,13 @@ export default function Timeline() {
                 </div>
 
                 {/* Empty Space */}
-                <div className="w-1/2"></div>
+                <div className="hidden md:block md:w-1/2"></div>
               </div>
             ))}
           </div>
 
           {/* Future Brick Wall */}
-          <div className="mt-24">
+          <div className="mt-16 md:mt-24">
             {/* Final milestone dot */}
             <div className="flex">
               <div className="w-1/2"></div>
@@ -177,7 +177,7 @@ export default function Timeline() {
             </div>
 
             {/* Main timeline line diverging to wall */}
-            <svg className="absolute left-1/2 transform -translate-x-1/2 top-24 w-full h-32 opacity-60 pointer-events-none">
+            <svg className="absolute left-4 md:left-1/2 md:transform md:-translate-x-1/2 top-24 w-full h-32 opacity-60 pointer-events-none hidden md:block">
               <defs>
                 <linearGradient id="gradientToWall" x1="0%" y1="0%" x2="0%" y2="100%">
                   <stop offset="0%" stopColor="#22D3EE" />
@@ -207,10 +207,10 @@ export default function Timeline() {
             </svg>
 
             {/* Unified brick wall with all possibilities */}
-            <div className="mt-32 px-6 md:px-0">
-              <h3 className="text-center text-gray-400 text-sm italic mb-12">Where I'm Heading & Beyond</h3>
+            <div className="mt-16 md:mt-32 px-2 md:px-0">
+              <h3 className="text-center text-gray-400 text-xs md:text-sm italic mb-8 md:mb-12">Where I'm Heading & Beyond</h3>
 
-              <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-2">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-1 md:gap-2">
                 {[
                   { label: "AI & Machine Learning", color: "cyan", blur: 0 },
                   { label: "Design Leadership", color: "lime", blur: 0 },
@@ -245,7 +245,7 @@ export default function Timeline() {
                     }}
                   >
                     <div
-                      className={`p-3 rounded-md border transition-all duration-300 group-hover:blur-none text-center text-xs font-semibold h-16 flex items-center justify-center`}
+                      className={`p-2 md:p-3 rounded-md border transition-all duration-300 group-hover:blur-none text-center text-xs font-semibold h-12 md:h-16 flex items-center justify-center`}
                       style={{
                         borderColor:
                           brick.color === "cyan"
@@ -290,8 +290,8 @@ export default function Timeline() {
               </div>
 
               {/* Future indicator text */}
-              <div className="text-center mt-12">
-                <p className="text-gray-400 text-sm italic">
+              <div className="text-center mt-8 md:mt-12">
+                <p className="text-gray-400 text-xs md:text-sm italic">
                   The journey continues... Multiple paths, infinite possibilities. Growth is ongoing.
                 </p>
               </div>
