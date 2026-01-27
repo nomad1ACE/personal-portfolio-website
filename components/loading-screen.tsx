@@ -50,13 +50,19 @@ export function LoadingScreen() {
           />
         </div>
         
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col items-center gap-4 mt-4">
+          <div className="text-center">
+            <p className="text-lg text-gray-300 mb-2">Which card do you wa<span className="text-red-600">nt</span></p>
+            <p className="text-lg text-gray-300">to pick ?</p>
+          </div>
+          <p className="text-3xl font-bold text-red-600">I know I'm Unique.</p>
+        </div>
+        
+        <div className="flex flex-col gap-2 mt-6">
           <div className="w-2 h-2 rounded-full bg-red-500 animate-bounce"></div>
           <div className="w-2 h-2 rounded-full bg-cyan-400 animate-bounce" style={{ animationDelay: "0.1s" }}></div>
           <div className="w-2 h-2 rounded-full bg-lime-400 animate-bounce" style={{ animationDelay: "0.2s" }}></div>
         </div>
-        
-        <p className="text-gray-400 text-sm">Loading portfolio...</p>
       </div>
     </div>
   )
