@@ -15,7 +15,7 @@ export default function ConnectSection() {
 
   return (
     <motion.section
-      id="contact"
+      id="connect-section"
       className="min-h-screen bg-zinc-900 text-white relative py-24"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
