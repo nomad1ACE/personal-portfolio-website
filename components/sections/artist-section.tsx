@@ -30,9 +30,15 @@ export default function ArtistSection() {
               href="https://www.instagram.com/shyayer_nomad?igsh=N3h3bHpsdmM4YTI5"
               target="_blank"
               rel="noopener noreferrer"
-              className="group cursor-pointer hover:scale-105 transition-transform duration-300"
             >
-              <AnimatedImage src={IMAGES.artistCard} alt="Artist card - Click to visit Instagram" />
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 300, damping: 10 }}
+                className="group cursor-pointer relative"
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-lime-500 to-lime-600 rounded-lg opacity-0 group-hover:opacity-20 blur-lg transition-opacity duration-300"></div>
+                <AnimatedImage src={IMAGES.artistCard} alt="Artist card - Click to visit Instagram" />
+              </motion.div>
             </Link>
           </div>
           <SkillsGrid skills={ARTIST_SKILLS} />

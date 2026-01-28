@@ -30,9 +30,15 @@ export default function DeveloperSection() {
               href="https://github.com/nomad1ACE"
               target="_blank"
               rel="noopener noreferrer"
-              className="group cursor-pointer hover:scale-105 transition-transform duration-300"
             >
-              <AnimatedImage src={IMAGES.developerCard} alt="Developer card - Click to visit GitHub" />
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 300, damping: 10 }}
+                className="group cursor-pointer relative"
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-cyan-600 rounded-lg opacity-0 group-hover:opacity-20 blur-lg transition-opacity duration-300"></div>
+                <AnimatedImage src={IMAGES.developerCard} alt="Developer card - Click to visit GitHub" />
+              </motion.div>
             </Link>
           </div>
           <SkillsGrid skills={DEVELOPER_SKILLS} />

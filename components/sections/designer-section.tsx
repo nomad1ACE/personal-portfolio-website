@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link"
 import { motion } from "framer-motion"
 import { SectionContainer } from "@/components/ui/section-container"
 import { SectionHeader } from "@/components/ui/section-header"
@@ -25,7 +26,16 @@ export default function DesignerSection() {
               description="UX-focused designer combining psychology with design principles. Expert in Figma and Canva, specializing in wireframing and user experience design to create intuitive interfaces that resonate emotionally with users."
               subtitleColor={COLORS.primary}
             />
-            <AnimatedImage src={IMAGES.designerCard} alt="Designer card" />
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: "spring", stiffness: 300, damping: 10 }}
+              className="group cursor-pointer"
+            >
+              <div className="relative">
+                <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-red-600 rounded-lg opacity-0 group-hover:opacity-20 blur-lg transition-opacity duration-300"></div>
+                <AnimatedImage src={IMAGES.designerCard} alt="Designer card - Click to explore" />
+              </div>
+            </motion.div>
           </div>
           <SkillsGrid skills={DESIGNER_SKILLS} columns={3} />
         </div>
