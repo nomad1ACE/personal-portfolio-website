@@ -17,7 +17,7 @@ export default function DeveloperSection() {
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
     >
-      <SectionContainer id="projects">
+      <SectionContainer id="developer-section">
         <div className="space-y-24">
           <motion.div 
             className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center"
@@ -33,9 +33,8 @@ export default function DeveloperSection() {
               subtitleColor="text-cyan-400"
             />
             <Link
-              href="https://github.com/nomad1ACE"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#developer-section"
+              scroll={true}
             >
               <motion.div
                 whileHover={{ scale: 1.05 }}

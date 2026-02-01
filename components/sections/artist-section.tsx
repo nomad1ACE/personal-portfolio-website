@@ -17,7 +17,7 @@ export default function ArtistSection() {
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
     >
-      <SectionContainer>
+      <SectionContainer id="artist-section">
         <div className="space-y-24">
           <motion.div 
             className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center"
@@ -33,9 +33,8 @@ export default function ArtistSection() {
               subtitleColor={COLORS.tertiary}
             />
             <Link
-              href="https://www.instagram.com/shyayer_nomad?igsh=N3h3bHpsdmM4YTI5"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#artist-section"
+              scroll={true}
             >
               <motion.div
                 whileHover={{ scale: 1.05 }}
