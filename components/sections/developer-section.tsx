@@ -19,7 +19,13 @@ export default function DeveloperSection() {
     >
       <SectionContainer id="projects">
         <div className="space-y-24">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
             <SectionHeader
               title="Let's build together"
               subtitle="developer"
@@ -38,9 +44,12 @@ export default function DeveloperSection() {
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-cyan-600 rounded-lg opacity-0 group-hover:opacity-20 blur-lg transition-opacity duration-300"></div>
                 <AnimatedImage src={IMAGES.developerCard} alt="Developer card - Click to visit GitHub" />
+                <motion.div className="absolute inset-0 flex items-center justify-center rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <span className="text-white font-semibold text-lg bg-black/60 px-4 py-2 rounded-lg">Click to Explore</span>
+                </motion.div>
               </motion.div>
             </Link>
-          </div>
+          </motion.div>
           <SkillsGrid skills={DEVELOPER_SKILLS} />
         </div>
       </SectionContainer>

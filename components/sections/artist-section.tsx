@@ -19,7 +19,13 @@ export default function ArtistSection() {
     >
       <SectionContainer>
         <div className="space-y-24">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+          >
             <SectionHeader
               title="Let's play with words"
               subtitle="artist"
@@ -38,9 +44,12 @@ export default function ArtistSection() {
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-lime-500 to-lime-600 rounded-lg opacity-0 group-hover:opacity-20 blur-lg transition-opacity duration-300"></div>
                 <AnimatedImage src={IMAGES.artistCard} alt="Artist card - Click to visit Instagram" />
+                <motion.div className="absolute inset-0 flex items-center justify-center rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <span className="text-white font-semibold text-lg bg-black/60 px-4 py-2 rounded-lg">Click to Explore</span>
+                </motion.div>
               </motion.div>
             </Link>
-          </div>
+          </motion.div>
           <SkillsGrid skills={ARTIST_SKILLS} />
         </div>
       </SectionContainer>

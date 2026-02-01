@@ -19,7 +19,13 @@ export default function DesignerSection() {
     >
       <SectionContainer>
         <div className="space-y-24">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
             <SectionHeader
               title="Let's design together"
               subtitle="designer"
@@ -29,14 +35,17 @@ export default function DesignerSection() {
             <motion.div
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 300, damping: 10 }}
-              className="group cursor-pointer"
+              className="group cursor-pointer relative"
             >
               <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-red-600 rounded-lg opacity-0 group-hover:opacity-20 blur-lg transition-opacity duration-300"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-red-600 rounded-lg opacity-0 group-hover:opacity-20 blur-lg transition-opacity duration-300 rounded-lg"></div>
                 <AnimatedImage src={IMAGES.designerCard} alt="Designer card - Click to explore" />
+                <motion.div className="absolute inset-0 flex items-center justify-center rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <span className="text-white font-semibold text-lg bg-black/60 px-4 py-2 rounded-lg">Click to Explore</span>
+                </motion.div>
               </div>
             </motion.div>
-          </div>
+          </motion.div>
           <SkillsGrid skills={DESIGNER_SKILLS} columns={3} />
         </div>
       </SectionContainer>
