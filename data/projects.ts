@@ -4,7 +4,7 @@ export const projects = [
     title: "AI-Powered Chat Application",
     description:
       "A real-time chat application with AI-generated responses using OpenAI's GPT-3. Features include message history, typing indicators, and responsive design.",
-    imageUrl: "/images/ai-chat-app.jpg",
+    imageUrl: "",
     githubUrl: "https://github.com/nomad1ACE/ai-chat-app",
     technologies: ["React", "Node.js", "OpenAI API", "Socket.io"],
     status: "Completed",
@@ -15,14 +15,14 @@ export const projects = [
     description:
       "A full-stack e-commerce solution with React, Node.js, and MongoDB. Includes user authentication, payment processing, and admin dashboard.",
     imageUrl:
-      "/images/ecommerce-platform.jpg",
+      "",
     githubUrl: "https://github.com/nomad1ACE/ecommerce-platform",
     technologies: ["React", "Node.js", "MongoDB", "Stripe API"],
     status: "Completed",
   },
   {
     id: "portfolio-website",
-    title: "Personal Portfolio Website",
+    title: "Personal Portfolio",
     description:
       "A digital mirror of my personality built from custom Figma design and implemented using Vercel. More than a showcase of projects and skills, this portfolio reflects who I am, how I think, and where I'm headed. Features AI & Systems enthusiast profile, developer/designer/artist identities, interactive timeline, and seamless integrations with GitHub, Figma, and Instagram.",
     imageUrl: "", // Will use horse logo as default
@@ -36,7 +36,7 @@ export const projects = [
     description:
       "A Kanban-style task management application built with React and Firebase. Features drag-and-drop functionality and real-time collaboration.",
     imageUrl:
-      "/images/task-management-app.jpg",
+      "",
     githubUrl: "https://github.com/nomad1ACE/task-management-app",
     technologies: ["React", "Firebase", "Material-UI", "React DnD"],
     status: "In Progress",
@@ -57,7 +57,7 @@ export const projects = [
     title: "Blog Content Management System",
     description:
       "A headless CMS for blogs using Next.js and Strapi. Features markdown support, SEO optimization, and admin panel for content management.",
-    imageUrl: "/images/blog-cms.jpg",
+    imageUrl: "",
     githubUrl: "https://github.com/nomad1ACE/blog-cms",
     technologies: ["Next.js", "Strapi", "PostgreSQL", "Markdown"],
     status: "Completed",
@@ -67,7 +67,7 @@ export const projects = [
     title: "Social Media Dashboard",
     description:
       "A comprehensive dashboard for managing multiple social media accounts. Built with React and integrates with various social media APIs.",
-    imageUrl: "/placeholder.svg?height=300&width=400&text=Social+Media+Dashboard",
+    imageUrl: "",
     githubUrl: "https://github.com/nomad1ACE/social-media-dashboard",
     technologies: ["React", "Chart.js", "Twitter API", "Instagram API"],
     status: "In Progress",
@@ -77,7 +77,7 @@ export const projects = [
     title: "Personal Expense Tracker",
     description:
       "A mobile-first expense tracking application with budget management, category-wise spending analysis, and data visualization.",
-    imageUrl: "/placeholder.svg?height=300&width=400&text=Expense+Tracker",
+    imageUrl: "",
     githubUrl: "https://github.com/nomad1ACE/expense-tracker",
     technologies: ["React Native", "SQLite", "Chart.js", "AsyncStorage"],
     status: "Completed",
@@ -87,7 +87,7 @@ export const projects = [
     title: "Code Snippet Manager",
     description:
       "A desktop application for organizing and managing code snippets with syntax highlighting, tagging system, and search functionality.",
-    imageUrl: "/placeholder.svg?height=300&width=400&text=Code+Snippet+Manager",
+    imageUrl: "",
     githubUrl: "https://github.com/nomad1ACE/code-snippet-manager",
     technologies: ["Electron", "React", "Monaco Editor", "SQLite"],
     status: "In Progress",
