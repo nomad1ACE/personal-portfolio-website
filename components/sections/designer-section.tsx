@@ -32,19 +32,25 @@ export default function DesignerSection() {
               description="UX-focused designer combining psychology with design principles. Expert in Figma and Canva, specializing in wireframing and user experience design to create intuitive interfaces that resonate emotionally with users."
               subtitleColor={COLORS.primary}
             />
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 300, damping: 10 }}
-              className="group cursor-pointer relative"
+            <Link
+              href="https://www.figma.com/@tusharshinde"
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-red-600 rounded-lg opacity-0 group-hover:opacity-20 blur-lg transition-opacity duration-300 rounded-lg"></div>
-                <AnimatedImage src={IMAGES.designerCard} alt="Designer card - Click to explore" />
-                <motion.div className="absolute inset-0 flex items-center justify-center rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <span className="text-white font-semibold text-lg bg-black/60 px-4 py-2 rounded-lg">Click to Explore</span>
-                </motion.div>
-              </div>
-            </motion.div>
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 300, damping: 10 }}
+                className="group cursor-pointer relative"
+              >
+                <div className="relative">
+                  <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-red-600 rounded-lg opacity-0 group-hover:opacity-20 blur-lg transition-opacity duration-300 rounded-lg"></div>
+                  <AnimatedImage src={IMAGES.designerCard} alt="Designer card - Click to visit Figma" />
+                  <motion.div className="absolute inset-0 flex items-center justify-center rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <span className="text-white font-semibold text-lg bg-black/60 px-4 py-2 rounded-lg">Click to Explore</span>
+                  </motion.div>
+                </div>
+              </motion.div>
+            </Link>
           </motion.div>
           <SkillsGrid skills={DESIGNER_SKILLS} columns={3} />
         </div>
