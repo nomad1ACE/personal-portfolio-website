@@ -25,7 +25,7 @@ export const projects = [
     title: "Personal Portfolio Website",
     description:
       "A digital mirror of my personality built from custom Figma design and implemented using Vercel. More than a showcase of projects and skills, this portfolio reflects who I am, how I think, and where I'm headed. Features AI & Systems enthusiast profile, developer/designer/artist identities, interactive timeline, and seamless integrations with GitHub, Figma, and Instagram.",
-    imageUrl: "/images/horse-logo.png",
+    imageUrl: "", // Will use horse logo as default
     githubUrl: "https://github.com/nomad1ACE/personal-portfolio-website",
     technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Vercel"],
     status: "Completed",

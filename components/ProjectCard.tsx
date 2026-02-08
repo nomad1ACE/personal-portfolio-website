@@ -3,12 +3,15 @@
 import Image from "next/image"
 import { ExternalLink, Github } from "lucide-react"
 import { HoverCard } from "./HoverCard"
+import { IMAGES } from "@/config/constants"
 import type { ProjectCardProps } from "@/types"
 
 export function ProjectCard({ project }: ProjectCardProps) {
   const handleClick = () => {
     window.open(project.githubUrl, "_blank", "noopener,noreferrer")
   }
+  
+  const imageUrl = project.imageUrl || IMAGES.horseLogo || "/placeholder.svg"
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -28,7 +31,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
       <div onClick={handleClick} className="block">
         <div className="relative h-48">
           <Image
-            src={project.imageUrl || "/placeholder.svg"}
+            src={imageUrl || "/placeholder.svg"}
             alt={project.title}
             fill
             className="object-cover transition-transform duration-300 group-hover:scale-105"
