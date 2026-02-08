@@ -8,6 +8,7 @@ export interface Project {
   githubUrl: string
   technologies: string[]
   status: "Completed" | "In Progress" | "Planning"
+  isPortfolioProject?: boolean
 }
 
 export interface Skill {

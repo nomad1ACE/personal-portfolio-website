@@ -7,7 +7,12 @@ import type { ProjectCardProps } from "@/types"
 
 export function ProjectCard({ project }: ProjectCardProps) {
   const handleClick = () => {
-    window.open(project.githubUrl, "_blank", "noopener,noreferrer")
+    if (project.isPortfolioProject) {
+      // For portfolio project, scroll to home instead
+      window.scrollTo({ top: 0, behavior: "smooth" })
+    } else {
+      window.open(project.githubUrl, "_blank", "noopener,noreferrer")
+    }
   }
 
   const getStatusColor = (status: string) => {
@@ -40,9 +45,17 @@ export function ProjectCard({ project }: ProjectCardProps) {
           </div>
           <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center">
             <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-2 text-white">
-              <Github className="w-6 h-6" />
-              <span className="text-sm font-medium">View on GitHub</span>
-              <ExternalLink className="w-4 h-4" />
+              {project.isPortfolioProject ? (
+                <>
+                  <span className="text-sm font-medium">You are here!</span>
+                </>
+              ) : (
+                <>
+                  <Github className="w-6 h-6" />
+                  <span className="text-sm font-medium">View on GitHub</span>
+                  <ExternalLink className="w-4 h-4" />
+                </>
+              )}
             </div>
           </div>
         </div>
