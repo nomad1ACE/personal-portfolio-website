@@ -22,13 +22,13 @@ export const projects = [
   },
   {
     id: "portfolio-website",
-    title: "Portfolio Website",
+    title: "Personal Portfolio Website",
     description:
-      "A responsive portfolio website showcasing skills and projects. Built with Next.js, featuring smooth animations and modern design principles.",
+      "A digital mirror of my personality built from custom Figma design and implemented using Vercel. More than a showcase of projects and skills, this portfolio reflects who I am, how I think, and where I'm headed. Features AI & Systems enthusiast profile, developer/designer/artist identities, interactive timeline, and seamless integrations with GitHub, Figma, and Instagram.",
     imageUrl:
       "/images/portfolio-website.jpg",
-    githubUrl: "https://github.com/nomad1ACE/portfolio-website",
-    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
+    githubUrl: "https://github.com/nomad1ACE/personal-portfolio-website",
+    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Vercel"],
     status: "Completed",
   },
   {
