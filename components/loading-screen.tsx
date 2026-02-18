@@ -12,7 +12,7 @@ export function LoadingScreen() {
     // Stage 1: Show horse for 2.1 seconds (70%)
     const stage1Timer = setTimeout(() => {
       setStage("quote")
-    }, 2100)
+    }, 4000)
 
     // Stage 2: Show quote for 0.9 seconds (30%)
     const stage2Timer = setTimeout(() => {
