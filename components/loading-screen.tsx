@@ -5,28 +5,23 @@ import Image from "next/image"
 import { IMAGES } from "@/config/constants"
 
 export function LoadingScreen() {
-  const [stage, setStage] = useState<"horse" | "quote" | "done">("horse")
+  const [stage, setStage] = useState<"horse" | "quote">("horse")
   const [isVisible, setIsVisible] = useState(true)
 
   useEffect(() => {
-    // Stage 1: Show horse for 2.1 seconds (70%)
-    const stage1Timer = setTimeout(() => {
+    const TOTAL_TIME = 2000 // 2 seconds total
+    const HALF_TIME = TOTAL_TIME / 2 // 1000ms each
+
+    const stageTimer = setTimeout(() => {
       setStage("quote")
-    }, 4000)
+    }, HALF_TIME)
 
-    // Stage 2: Show quote for 0.9 seconds (30%)
-    const stage2Timer = setTimeout(() => {
-      setStage("done")
-    }, 3000)
-
-    // Stage 3: Hide loading screen
     const hideTimer = setTimeout(() => {
       setIsVisible(false)
-    }, 3000)
+    }, TOTAL_TIME)
 
     return () => {
-      clearTimeout(stage1Timer)
-      clearTimeout(stage2Timer)
+      clearTimeout(stageTimer)
       clearTimeout(hideTimer)
     }
   }, [])
@@ -45,27 +40,23 @@ export function LoadingScreen() {
           }
         }
         @keyframes fade-out {
-          0% { opacity: 1; }
-          100% { opacity: 0; }
+          from { opacity: 1; }
+          to { opacity: 0; }
         }
         @keyframes fade-in {
-          0% { opacity: 0; }
-          100% { opacity: 1; }
+          from { opacity: 0; }
+          to { opacity: 1; }
         }
         .horse-glow {
           animation: pulse-glow 2s ease-in-out infinite;
         }
-        .horse-fade-out {
-          animation: fade-out 0.5s ease-out forwards;
-        }
-        .quote-fade-in {
-          animation: fade-in 0.5s ease-in forwards;
+        .fade-in {
+          animation: fade-in 0.4s ease-in forwards;
         }
       `}</style>
 
-      {/* Stage 1: Horse + "I know I'm Unique" */}
       {stage === "horse" && (
-        <div className="flex flex-col items-center gap-6">
+        <div className="flex flex-col items-center gap-6 fade-in">
           <div className="relative w-[280px] h-[280px]">
             <Image
               src={IMAGES.horseLogo || "/placeholder.svg"}
@@ -77,24 +68,25 @@ export function LoadingScreen() {
 
           <div className="flex flex-col items-center gap-4 mt-4">
             <p className="text-2xl font-semibold text-gray-300">
-              Loading<span className="text-red-600">...</span> I know I'm <span className="text-red-600">Unique</span>
+              Loading<span className="text-red-600">...</span> I know I'm{" "}
+              <span className="text-red-600">Unique</span>
             </p>
-            <p className="text-sm text-gray-400">Merging creativity, technology and psychology</p>
+            <p className="text-sm text-gray-400">
+              Merging creativity, technology and psychology
+            </p>
           </div>
         </div>
       )}
 
-      {/* Stage 2: Quote with highlighted words */}
       {stage === "quote" && (
-        <div className="quote-fade-in px-8 text-center max-w-2xl">
+        <div className="px-8 text-center max-w-2xl fade-in">
           <p className="text-2xl md:text-3xl font-semibold leading-relaxed text-gray-300">
             I see my{" "}
-            <span className="text-red-600 font-bold">weaknesses</span>
-            {" "}as vessels
+            <span className="text-red-600 font-bold">weaknesses</span>{" "}
+            as vessels
             <br />
             That force me to use my{" "}
-            <span className="text-red-600 font-bold">strengths</span>
-            {" "}
+            <span className="text-red-600 font-bold">strengths</span>{" "}
             effectively..
           </p>
         </div>
