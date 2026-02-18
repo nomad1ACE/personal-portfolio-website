@@ -9,8 +9,8 @@ export function LoadingScreen() {
   const [isVisible, setIsVisible] = useState(true)
 
   useEffect(() => {
-    const HORSE_TIME = 2500      // 2.5 seconds
-    const TOTAL_TIME = 6000      // 6 seconds total
+    const HORSE_TIME = 2500
+    const TOTAL_TIME = 6000
 
     const stageTimer = setTimeout(() => {
       setStage("quote")
@@ -39,21 +39,55 @@ export function LoadingScreen() {
             filter: drop-shadow(0 0 25px rgba(220, 38, 38, 0.9));
           }
         }
+
         @keyframes fade-in {
           from { opacity: 0; transform: translateY(10px); }
           to { opacity: 1; transform: translateY(0); }
         }
+
+        @keyframes glass-shine {
+          0% {
+            transform: translateX(-150%) rotate(25deg);
+          }
+          100% {
+            transform: translateX(150%) rotate(25deg);
+          }
+        }
+
         .horse-glow {
           animation: pulse-glow 2s ease-in-out infinite;
         }
+
         .fade-in {
           animation: fade-in 0.6s ease forwards;
+        }
+
+        .glass-container {
+          position: relative;
+          overflow: hidden;
+        }
+
+        .glass-container::after {
+          content: "";
+          position: absolute;
+          top: -50%;
+          left: -50%;
+          width: 50%;
+          height: 200%;
+          background: linear-gradient(
+            120deg,
+            rgba(255,255,255,0.05) 0%,
+            rgba(255,255,255,0.4) 50%,
+            rgba(255,255,255,0.05) 100%
+          );
+          animation: glass-shine 3.5s ease-in-out infinite;
+          pointer-events: none;
         }
       `}</style>
 
       {stage === "horse" && (
         <div className="flex flex-col items-center gap-6 fade-in">
-          <div className="relative w-[280px] h-[280px]">
+          <div className="relative w-[280px] h-[280px] glass-container">
             <Image
               src={IMAGES.horseLogo || "/placeholder.svg"}
               alt="Loading horse"
@@ -83,7 +117,7 @@ export function LoadingScreen() {
             <br />
             That force me to use my{" "}
             <span className="text-red-600 font-bold">strengths</span>{" "}
-            effectively.
+            effectively..
           </p>
         </div>
       )}
