@@ -45,12 +45,12 @@ export function LoadingScreen() {
           to { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes glass-shine {
+        @keyframes light-sweep {
           0% {
-            transform: translateX(-150%) rotate(25deg);
+            transform: translateX(-200%) skewX(-20deg);
           }
           100% {
-            transform: translateX(150%) rotate(25deg);
+            transform: translateX(200%) skewX(-20deg);
           }
         }
 
@@ -62,38 +62,41 @@ export function LoadingScreen() {
           animation: fade-in 0.6s ease forwards;
         }
 
-        .glass-container {
+        .logo-wrapper {
           position: relative;
           overflow: hidden;
         }
 
-        .glass-container::after {
-          content: "";
+        .light-reflection {
           position: absolute;
-          top: -50%;
-          left: -50%;
-          width: 50%;
-          height: 200%;
+          top: 0;
+          left: 0;
+          width: 40%;
+          height: 100%;
           background: linear-gradient(
-            120deg,
-            rgba(255,255,255,0.05) 0%,
+            to right,
+            transparent 0%,
             rgba(255,255,255,0.4) 50%,
-            rgba(255,255,255,0.05) 100%
+            transparent 100%
           );
-          animation: glass-shine 3.5s ease-in-out infinite;
+          mix-blend-mode: overlay;
+          animation: light-sweep 4s ease-in-out infinite;
           pointer-events: none;
         }
       `}</style>
 
       {stage === "horse" && (
         <div className="flex flex-col items-center gap-6 fade-in">
-          <div className="relative w-[280px] h-[280px] glass-container">
+          <div className="relative w-[280px] h-[280px] logo-wrapper">
             <Image
               src={IMAGES.horseLogo || "/placeholder.svg"}
               alt="Loading horse"
               fill
               className="object-contain horse-glow"
             />
+
+            {/* Light Reflection */}
+            <div className="light-reflection" />
           </div>
 
           <div className="flex flex-col items-center gap-4 mt-4">
