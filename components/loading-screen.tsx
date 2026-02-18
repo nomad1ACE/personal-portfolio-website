@@ -83,7 +83,7 @@ export function LoadingScreen() {
             <br />
             That force me to use my{" "}
             <span className="text-red-600 font-bold">strengths</span>{" "}
-            effectively..
+            effectively.
           </p>
         </div>
       )}
