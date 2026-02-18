@@ -9,12 +9,12 @@ export function LoadingScreen() {
   const [isVisible, setIsVisible] = useState(true)
 
   useEffect(() => {
-    const TOTAL_TIME = 2000 // 2 seconds total
-    const HALF_TIME = TOTAL_TIME / 2 // 1000ms each
+    const HORSE_TIME = 2500      // 2.5 seconds
+    const TOTAL_TIME = 6000      // 6 seconds total
 
     const stageTimer = setTimeout(() => {
       setStage("quote")
-    }, HALF_TIME)
+    }, HORSE_TIME)
 
     const hideTimer = setTimeout(() => {
       setIsVisible(false)
@@ -39,19 +39,15 @@ export function LoadingScreen() {
             filter: drop-shadow(0 0 25px rgba(220, 38, 38, 0.9));
           }
         }
-        @keyframes fade-out {
-          from { opacity: 1; }
-          to { opacity: 0; }
-        }
         @keyframes fade-in {
-          from { opacity: 0; }
-          to { opacity: 1; }
+          from { opacity: 0; transform: translateY(10px); }
+          to { opacity: 1; transform: translateY(0); }
         }
         .horse-glow {
           animation: pulse-glow 2s ease-in-out infinite;
         }
         .fade-in {
-          animation: fade-in 0.4s ease-in forwards;
+          animation: fade-in 0.6s ease forwards;
         }
       `}</style>
 
