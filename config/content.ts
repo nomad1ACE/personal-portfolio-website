@@ -1,5 +1,4 @@
-import { SiReact, SiJavascript, SiCplusplus, SiPython, SiFigma, SiCanva, SiOpenai, SiJava, SiFlask } from "react-icons/si"
-import { Coffee, Package } from "lucide-react"
+import { Coffee, Package, Figma, Code2, Palette, Pen, Users, MessageSquare } from "lucide-react"
 import { Instagram, Linkedin } from "lucide-react"
 import { PoetryIcon, WritingIcon, CommunicationIcon, TranslationIcon } from "@/components/icons/art-icons"
 import type { Skill, SocialLink } from "@/types"
@@ -27,19 +26,19 @@ export const HERO_CONTENT = {
 } as const
 
 export const DEVELOPER_SKILLS: Skill[] = [
-  { name: "Python", icon: SiPython, color: "text-[#3776AB]" },
-  { name: "C++", icon: SiCplusplus, color: "text-[#00599C]" },
+  { name: "Python", icon: Code2, color: "text-[#3776AB]" },
+  { name: "C++", icon: Code2, color: "text-[#00599C]" },
   { name: "Java", icon: Coffee, color: "text-[#007396]" },
   { name: "Flask", icon: Package, color: "text-[#000000]" },
-  { name: "LLM Fine-tuning", icon: SiOpenai, color: "text-[#412991]" },
-  { name: "JavaScript", icon: SiJavascript, color: "text-[#F7DF1E]" },
+  { name: "LLM Fine-tuning", icon: Code2, color: "text-[#412991]" },
+  { name: "JavaScript", icon: Code2, color: "text-[#F7DF1E]" },
 ]
 
 export const DESIGNER_SKILLS: Skill[] = [
-  { name: "Figma", icon: SiFigma, color: "text-[#F24E1E]" },
-  { name: "Canva", icon: SiCanva, color: "text-[#00C4CC]" },
-  { name: "Wireframing", icon: SiFigma, color: "text-[#8B7D6B]" },
-  { name: "UX Psychology", icon: SiOpenai, color: "text-red-600" },
+  { name: "Figma", icon: Palette, color: "text-[#F24E1E]" },
+  { name: "Canva", icon: Palette, color: "text-[#00C4CC]" },
+  { name: "Wireframing", icon: Palette, color: "text-[#8B7D6B]" },
+  { name: "UX Psychology", icon: Users, color: "text-red-600" },
 ]
 
 export const ARTIST_SKILLS: Skill[] = [
