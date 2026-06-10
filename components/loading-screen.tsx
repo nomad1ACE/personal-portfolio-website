@@ -1,12 +1,14 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import { usePathname } from "next/navigation"
 import Image from "next/image"
 import { IMAGES } from "@/config/constants"
 
 export function LoadingScreen() {
+  const pathname = usePathname()
   const [stage, setStage] = useState<"horse" | "quote">("horse")
-  const [isVisible, setIsVisible] = useState(true)
+  const [isVisible, setIsVisible] = useState(pathname === "/")
 
   useEffect(() => {
     const HORSE_TIME = 2500
