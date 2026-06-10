@@ -9,7 +9,7 @@ export default function ResumePage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
           <div className="md:col-span-1">
             <Image
-              src="/images/design-mode/Untitled%20design%20%288%29%201.png"
+              src="/images/design-mode/tushar-portrait.png"
               alt="Tushar's portrait"
               width={200}
               height={200}
