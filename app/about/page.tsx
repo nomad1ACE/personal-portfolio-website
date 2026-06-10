@@ -9,7 +9,7 @@ export default function AboutPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div>
             <Image
-              src="/images/design-mode/Untitled%20design%20%288%29%201.png"
+              src="/images/design-mode/tushar-portrait.png"
               alt="Tushar's portrait"
               width={400}
               height={600}

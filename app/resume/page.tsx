@@ -1,6 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
-import { Mail, Phone, Linkedin, Github } from "lucide-react"
+import { Mail, Linkedin, Github } from "lucide-react"
 
 export default function ResumePage() {
   return (
@@ -9,21 +9,20 @@ export default function ResumePage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
           <div className="md:col-span-1">
             <Image
-              src="/images/design-mode/Untitled%20design%20%288%29%201.png"
+              src="/images/design-mode/tushar-portrait.png"
               alt="Tushar's portrait"
               width={200}
               height={200}
               className="rounded-full mx-auto"
             />
             <h1 className="text-3xl font-bold mt-4 text-center">Tushar Shinde</h1>
-            <p className="text-xl text-center text-gray-400">UI/UX Designer & Developer</p>
+            <p className="text-xl text-center text-gray-400">UI/UX Designer, Developer & AI Enthusiast</p>
 
             <div className="mt-6 space-y-2">
               <a href="mailto:pantusharshinde@gmail.com" className="flex items-center text-gray-300 hover:text-white">
                 <Mail className="w-5 h-5 mr-2" />
                 pantusharshinde@gmail.com
               </a>
-             
               <a
                 href="https://linkedin.com/in/yourusername"
                 target="_blank"
@@ -49,21 +48,32 @@ export default function ResumePage() {
             <section className="mb-6">
               <h2 className="text-2xl font-semibold mb-2">Summary</h2>
               <p className="text-gray-300">
-                Passionate UI/UX Designer and Developer with a strong foundation in computer science. Skilled in
-                blending creativity with functionality to create intuitive and engaging user experiences.
+                Computer Science graduate and MCA candidate at MIT-WPU passionate about AI, System Engineering, and Human-Technology Interaction. I build systems that connect logic with creativity—designing intelligent applications, crafting clean interfaces, and refining ideas into functional prototypes that bridge technology and psychology.
               </p>
             </section>
 
             <section className="mb-6">
               <h2 className="text-2xl font-semibold mb-2">Skills</h2>
-              <ul className="list-disc list-inside text-gray-300">
-                <li>UI/UX Design</li>
-                <li>React & JavaScript Development</li>
-                <li>Python Programming</li>
-                <li>C++ Programming</li>
-                <li>Figma & Canva</li>
-                <li>AI-assisted Design</li>
-              </ul>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <h3 className="font-semibold text-gray-200 mb-2">Development</h3>
+                  <ul className="list-disc list-inside text-gray-300 space-y-1">
+                    <li>Python & Java</li>
+                    <li>React & JavaScript</li>
+                    <li>C++ Programming</li>
+                    <li>Flask</li>
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-gray-200 mb-2">AI & Design</h3>
+                  <ul className="list-disc list-inside text-gray-300 space-y-1">
+                    <li>LLM Fine-tuning</li>
+                    <li>UX Psychology</li>
+                    <li>Figma & Canva</li>
+                    <li>Wireframing</li>
+                  </ul>
+                </div>
+              </div>
             </section>
 
             <section className="mb-6">
@@ -81,9 +91,13 @@ export default function ResumePage() {
 
             <section>
               <h2 className="text-2xl font-semibold mb-2">Education</h2>
+              <div className="mb-4">
+                <h3 className="text-xl font-semibold">Master of Computer Applications (MCA)</h3>
+                <p className="text-gray-400">MIT-WPU | In Progress</p>
+              </div>
               <div>
                 <h3 className="text-xl font-semibold">Bachelor of Science in Computer Science</h3>
-                <p className="text-gray-400">University Name | Graduation Year</p>
+                <p className="text-gray-400">Graduated</p>
               </div>
             </section>
           </div>
