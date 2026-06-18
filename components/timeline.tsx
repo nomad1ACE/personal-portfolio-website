@@ -98,14 +98,15 @@ const getColorHex = (color: string) => {
 }
 
 export default function Timeline() {
-  // Generate SVG wave path using sine wave
-  const amplitude = 100
-  const frequency = 0.012
+  // Generate SVG wave path using sine wave - CENTERED
+  const amplitude = 90
+  const frequency = 0.013
   const totalHeight = timelineEvents.length * 220
+  const centerX = 50 // Center position as percentage
 
   let wavePath = "M "
-  for (let y = 0; y < totalHeight; y += 15) {
-    const x = Math.sin(y * frequency) * amplitude + 200
+  for (let y = 0; y < totalHeight; y += 12) {
+    const x = Math.sin(y * frequency) * amplitude + centerX
     wavePath += `${x},${y} `
   }
 
@@ -121,11 +122,13 @@ export default function Timeline() {
 
         {/* 2.5D Wave Timeline Container */}
         <div className="relative w-full" style={{ height: `${totalHeight + 200}px`, perspective: "1200px" }}>
-          {/* SVG Wave Path */}
+          {/* SVG Wave Path - CENTERED */}
           <svg
             className="absolute top-0 left-0 w-full h-full pointer-events-none"
+            viewBox={`0 0 100 ${totalHeight}`}
+            preserveAspectRatio="xMidYMid slice"
             style={{
-              filter: "drop-shadow(0 20px 40px rgba(220, 38, 38, 0.15)) drop-shadow(0 10px 20px rgba(34, 211, 238, 0.1))",
+              filter: "drop-shadow(0 20px 50px rgba(220, 38, 38, 0.2)) drop-shadow(0 15px 30px rgba(34, 211, 238, 0.15))",
             }}
           >
             <defs>
@@ -147,37 +150,37 @@ export default function Timeline() {
               </filter>
             </defs>
 
-            {/* Shadow/Depth layer */}
+            {/* Shadow/Depth layer - THICKER */}
             <path
               d={wavePath}
               fill="none"
-              stroke="rgba(0, 0, 0, 0.3)"
-              strokeWidth="24"
+              stroke="rgba(0, 0, 0, 0.4)"
+              strokeWidth="6"
               style={{
-                filter: "blur(8px)",
-                transform: "translate(6px, 6px)",
+                filter: "blur(6px)",
+                transform: "translate(0.3vw, 0.3vw)",
               }}
             />
 
-            {/* Main glow wave */}
+            {/* Main glow wave - THICKER */}
             <path
               d={wavePath}
               fill="none"
               stroke="url(#waveGradient)"
-              strokeWidth="12"
+              strokeWidth="2.5"
               filter="url(#waveGlow)"
               strokeLinecap="round"
               strokeLinejoin="round"
             />
 
-            {/* Highlight edge for depth */}
+            {/* Highlight edge for depth - THICKER */}
             <path
               d={wavePath}
               fill="none"
-              stroke="rgba(255, 255, 255, 0.2)"
-              strokeWidth="4"
+              stroke="rgba(255, 255, 255, 0.3)"
+              strokeWidth="1"
               strokeLinecap="round"
-              style={{ transform: "translateY(-2px)", mixBlendMode: "screen" }}
+              style={{ transform: "translateY(-0.15vw)", mixBlendMode: "screen" }}
             />
           </svg>
 
@@ -185,7 +188,7 @@ export default function Timeline() {
           {timelineEvents.map((event, index) => {
             const Icon = event.icon
             const yPosition = index * 220 + 100
-            const waveX = Math.sin(yPosition * frequency) * amplitude + 200
+            const waveX = Math.sin(yPosition * frequency) * amplitude + centerX
             const isLeft = index % 2 === 0
 
             const bgColor =
@@ -202,14 +205,15 @@ export default function Timeline() {
                 key={index}
                 className="absolute w-72 group"
                 style={{
-                  left: isLeft ? "20px" : "auto",
-                  right: isLeft ? "auto" : "20px",
+                  left: isLeft ? "2%" : "auto",
+                  right: isLeft ? "auto" : "2%",
                   top: `${yPosition}px`,
+                  maxWidth: "calc(50% - 80px)",
                 }}
-                initial={{ opacity: 0, x: isLeft ? -30 : 30, y: 20, rotateY: isLeft ? 15 : -15 }}
+                initial={{ opacity: 0, x: isLeft ? -40 : 40, y: 25, rotateY: isLeft ? 20 : -20 }}
                 whileInView={{ opacity: 1, x: 0, y: 0, rotateY: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.7, delay: index * 0.12, ease: "easeOut" }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.8, delay: index * 0.15, ease: "easeOut" }}
               >
                 {/* Connecting line from card to wave */}
                 <svg
