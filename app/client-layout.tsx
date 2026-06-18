@@ -11,7 +11,8 @@ function Navigation() {
     if (element) {
       element.scrollIntoView({ behavior: "smooth" })
     } else {
-      window.location.href = "/contact"
+      // Navigate to home and scroll to connect section
+      window.location.href = "/#connect-section"
     }
   }
 
