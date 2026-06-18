@@ -51,13 +51,15 @@ export default function AboutSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.6 }}
             >
-              <a href="#developer-section" onClick={(e) => {
-                e.preventDefault();
-                const element = document.getElementById('developer-section');
-                element?.scrollIntoView({ behavior: 'smooth' });
-              }}>
+              <button 
+                onClick={() => {
+                  const element = document.getElementById('developer-section');
+                  element?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="absolute right-0 md:right-24 top-0 w-[300px] md:w-[400px] aspect-square group cursor-pointer bg-transparent border-none p-0"
+              >
                 <motion.div
-                  className="absolute right-0 md:right-24 top-0 w-[300px] md:w-[400px] aspect-square group cursor-pointer"
+                  className="w-full h-full"
                   whileHover={{ scale: 1.05 }}
                   transition={{ type: "spring", stiffness: 300, damping: 10 }}
                 >
@@ -74,7 +76,7 @@ export default function AboutSection() {
                     </motion.div>
                   </HoverCard>
                 </motion.div>
-              </a>
+              </button>
 
               {/* Descriptive Text */}
               <motion.p
