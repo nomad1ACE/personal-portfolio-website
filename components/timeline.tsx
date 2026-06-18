@@ -98,11 +98,11 @@ const getColorHex = (color: string) => {
 }
 
 export default function Timeline() {
-  // Generate SVG wave path using sine wave - CENTERED
+  // Generate SVG wave path using sine wave - CENTER-RIGHT
   const amplitude = 90
   const frequency = 0.013
   const totalHeight = timelineEvents.length * 220
-  const centerX = 50 // Center position as percentage
+  const centerX = 200 // Center-right position (SVG units)
 
   let wavePath = "M "
   for (let y = 0; y < totalHeight; y += 12) {
@@ -207,12 +207,12 @@ export default function Timeline() {
                 key={index}
                 className="absolute w-72 group"
                 style={{
-                  left: isLeft ? "2%" : "auto",
-                  right: isLeft ? "auto" : "2%",
+                  left: isLeft ? "1%" : "auto",
+                  right: isLeft ? "auto" : "1%",
                   top: `${yPosition}px`,
-                  maxWidth: "calc(50% - 80px)",
+                  maxWidth: "calc(50% - 120px)",
                 }}
-                initial={{ opacity: 0, x: isLeft ? -40 : 40, y: 25, rotateY: isLeft ? 20 : -20 }}
+                initial={{ opacity: 0, x: isLeft ? -50 : 50, y: 25, rotateY: isLeft ? 25 : -25 }}
                 whileInView={{ opacity: 1, x: 0, y: 0, rotateY: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ duration: 0.8, delay: index * 0.15, ease: "easeOut" }}
