@@ -3,7 +3,6 @@
 import type React from "react"
 import Link from "next/link"
 import { Github } from "lucide-react"
-import { LoadingScreen } from "@/components/loading-screen"
 
 function Navigation() {
   const handleContactClick = () => {
@@ -67,7 +66,6 @@ export default function ClientLayout({
 }) {
   return (
     <>
-      <LoadingScreen />
       <header className="max-w-[1400px] mx-auto px-6 lg:px-8">
         <div className="flex justify-end items-center py-8">
           <Navigation />
