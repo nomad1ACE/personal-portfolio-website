@@ -63,7 +63,7 @@ export default function AboutSection() {
                 >
                   <HoverCard className="w-full h-full relative">
                     <Image
-                      src="/images/design-mode/Component%2026.png"
+                      src="/images/design-mode/component.png"
                       alt="Gradient cards illustration"
                       fill
                       className="object-contain drop-shadow-2xl group-hover:drop-shadow-[0_0_30px_rgba(220,38,38,0.3)] transition-all duration-300"
