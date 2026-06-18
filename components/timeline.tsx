@@ -122,13 +122,15 @@ export default function Timeline() {
 
         {/* 2.5D Wave Timeline Container */}
         <div className="relative w-full" style={{ height: `${totalHeight + 200}px`, perspective: "1200px" }}>
-          {/* SVG Wave Path - CENTERED */}
+          {/* SVG Wave Path - CENTERED AND VISIBLE */}
           <svg
             className="absolute top-0 left-0 w-full h-full pointer-events-none"
-            viewBox={`0 0 100 ${totalHeight}`}
-            preserveAspectRatio="xMidYMid slice"
+            width="100%"
+            height="100%"
+            viewBox={`0 0 400 ${totalHeight}`}
+            preserveAspectRatio="xMidYMid meet"
             style={{
-              filter: "drop-shadow(0 20px 50px rgba(220, 38, 38, 0.2)) drop-shadow(0 15px 30px rgba(34, 211, 238, 0.15))",
+              filter: "drop-shadow(0 20px 50px rgba(220, 38, 38, 0.25)) drop-shadow(0 15px 30px rgba(34, 211, 238, 0.2))",
             }}
           >
             <defs>
@@ -150,37 +152,37 @@ export default function Timeline() {
               </filter>
             </defs>
 
-            {/* Shadow/Depth layer - THICKER */}
+            {/* Shadow/Depth layer - THICK AND VISIBLE */}
             <path
               d={wavePath}
               fill="none"
-              stroke="rgba(0, 0, 0, 0.4)"
-              strokeWidth="6"
+              stroke="rgba(0, 0, 0, 0.5)"
+              strokeWidth="20"
               style={{
-                filter: "blur(6px)",
-                transform: "translate(0.3vw, 0.3vw)",
+                filter: "blur(8px)",
+                transform: "translate(4px, 4px)",
               }}
             />
 
-            {/* Main glow wave - THICKER */}
+            {/* Main glow wave - THICK AND BRIGHT */}
             <path
               d={wavePath}
               fill="none"
               stroke="url(#waveGradient)"
-              strokeWidth="2.5"
+              strokeWidth="12"
               filter="url(#waveGlow)"
               strokeLinecap="round"
               strokeLinejoin="round"
             />
 
-            {/* Highlight edge for depth - THICKER */}
+            {/* Highlight edge for depth - BRIGHT EDGE */}
             <path
               d={wavePath}
               fill="none"
-              stroke="rgba(255, 255, 255, 0.3)"
-              strokeWidth="1"
+              stroke="rgba(255, 255, 255, 0.4)"
+              strokeWidth="3"
               strokeLinecap="round"
-              style={{ transform: "translateY(-0.15vw)", mixBlendMode: "screen" }}
+              style={{ transform: "translateY(-2px)", mixBlendMode: "screen" }}
             />
           </svg>
 
