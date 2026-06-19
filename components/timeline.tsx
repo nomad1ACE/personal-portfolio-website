@@ -358,7 +358,7 @@ export default function Timeline() {
                 View Projects
               </motion.a>
               <motion.a
-                href="#developer-section"
+                href="/#developer-section"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.98 }}
                 className="px-4 sm:px-8 py-2 sm:py-3 text-xs sm:text-sm md:text-base rounded-lg border-2 border-cyan-500 text-cyan-400 hover:bg-cyan-500/10 font-semibold transition-all shadow-lg hover:shadow-cyan-500/30"
