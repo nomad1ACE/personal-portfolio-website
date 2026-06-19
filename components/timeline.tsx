@@ -112,10 +112,10 @@ export default function Timeline() {
 
   return (
     <div className="py-12 md:py-24 bg-zinc-900 min-h-screen">
-      <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
-        <div className="mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 text-center">My Journey</h2>
-          <p className="text-gray-400 text-center max-w-2xl mx-auto">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+        <div className="mb-8 sm:mb-12 md:mb-16">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-2 sm:mb-4 text-center">My Journey</h2>
+          <p className="text-xs sm:text-sm md:text-base text-gray-400 text-center max-w-2xl mx-auto">
             A 2.5D isometric voyage through growth, learning, and creative exploration
           </p>
         </div>
@@ -205,12 +205,12 @@ export default function Timeline() {
             return (
               <motion.div
                 key={index}
-                className="absolute w-72 group"
+                className="absolute w-56 sm:w-64 md:w-72 group"
                 style={{
-                  left: isLeft ? "1%" : "auto",
-                  right: isLeft ? "auto" : "1%",
+                  left: isLeft ? "0.5rem" : "auto",
+                  right: isLeft ? "auto" : "0.5rem",
                   top: `${yPosition}px`,
-                  maxWidth: "calc(50% - 120px)",
+                  maxWidth: window.innerWidth < 640 ? "calc(100% - 1rem)" : window.innerWidth < 768 ? "calc(100% - 2rem)" : "calc(50% - 120px)",
                 }}
                 initial={{ opacity: 0, x: isLeft ? -50 : 50, y: 25, rotateY: isLeft ? 25 : -25 }}
                 whileInView={{ opacity: 1, x: 0, y: 0, rotateY: 0 }}
@@ -243,7 +243,7 @@ export default function Timeline() {
 
                 {/* Event Card with 3D perspective */}
                 <div
-                  className={`relative p-6 rounded-xl border ${bgColor} backdrop-blur-sm transition-all duration-500 hover:shadow-2xl overflow-hidden`}
+                  className={`relative p-3 sm:p-4 md:p-6 rounded-lg sm:rounded-xl border ${bgColor} backdrop-blur-sm transition-all duration-500 hover:shadow-2xl overflow-hidden`}
                   style={{
                     transform: `perspective(1000px) rotateY(${isLeft ? -8 : 8}deg) rotateX(2deg)`,
                     transformStyle: "preserve-3d",
@@ -256,42 +256,42 @@ export default function Timeline() {
                   {/* Content */}
                   <div className="relative z-10">
                     {/* Icon and Year */}
-                    <div className="flex items-center gap-2 mb-3">
+                    <div className="flex items-center gap-1.5 sm:gap-2 mb-2 sm:mb-3">
                       {Icon && (
                         <motion.div
                           whileHover={{ rotate: 12, scale: 1.1 }}
                           transition={{ type: "spring", stiffness: 200 }}
                         >
-                          <Icon className={`w-5 h-5 ${colorMap[event.color]}`} />
+                          <Icon className={`w-4 sm:w-5 h-4 sm:h-5 ${colorMap[event.color]}`} />
                         </motion.div>
                       )}
-                      <p className={`text-sm font-bold ${colorMap[event.color]} uppercase tracking-wide`}>{event.year}</p>
+                      <p className={`text-xs sm:text-sm font-bold ${colorMap[event.color]} uppercase tracking-wide`}>{event.year}</p>
                     </div>
 
                     {/* Title */}
-                    <h3 className="text-lg font-bold text-white mb-2 group-hover:text-red-400 transition-colors duration-300 line-clamp-2">
+                    <h3 className="text-sm sm:text-base md:text-lg font-bold text-white mb-1 sm:mb-2 group-hover:text-red-400 transition-colors duration-300 line-clamp-2">
                       {event.title}
                     </h3>
 
                     {/* Description */}
-                    <p className="text-sm text-gray-400 leading-relaxed mb-4 line-clamp-2">{event.description}</p>
+                    <p className="text-xs sm:text-sm text-gray-400 leading-tight sm:leading-relaxed mb-2 sm:mb-4 line-clamp-2">{event.description}</p>
 
                     {/* Skills Tags */}
                     {event.skills && event.skills.length > 0 && (
-                      <div className="mb-3">
-                        <p className="text-xs text-gray-500 mb-2 font-semibold">Skills</p>
-                        <div className="flex flex-wrap gap-2">
+                      <div className="mb-2 sm:mb-3 hidden sm:block">
+                        <p className="text-xs text-gray-500 mb-1.5 sm:mb-2 font-semibold">Skills</p>
+                        <div className="flex flex-wrap gap-1 sm:gap-2">
                           {event.skills.slice(0, 2).map((skill) => (
                             <motion.span
                               key={skill}
                               whileHover={{ scale: 1.05 }}
-                              className="px-2.5 py-1 text-xs rounded-full bg-zinc-700/40 text-gray-300 border border-zinc-600/50 backdrop-blur"
+                              className="px-2 sm:px-2.5 py-0.5 sm:py-1 text-xs rounded-full bg-zinc-700/40 text-gray-300 border border-zinc-600/50 backdrop-blur"
                             >
                               {skill}
                             </motion.span>
                           ))}
                           {event.skills.length > 2 && (
-                            <span className="px-2.5 py-1 text-xs rounded-full bg-zinc-700/40 text-gray-400 border border-zinc-600/50">
+                            <span className="px-2 sm:px-2.5 py-0.5 sm:py-1 text-xs rounded-full bg-zinc-700/40 text-gray-400 border border-zinc-600/50">
                               +{event.skills.length - 2}
                             </span>
                           )}
@@ -302,13 +302,13 @@ export default function Timeline() {
                     {/* Achievements */}
                     {event.achievements && event.achievements.length > 0 && (
                       <div>
-                        <p className="text-xs text-gray-500 mb-2 font-semibold">Achievements</p>
-                        <div className="flex flex-wrap gap-2">
-                          {event.achievements.map((achievement) => (
+                        <p className="text-xs text-gray-500 mb-1.5 sm:mb-2 font-semibold">Achievements</p>
+                        <div className="flex flex-wrap gap-1 sm:gap-2">
+                          {event.achievements.slice(0, window.innerWidth < 640 ? 1 : 2).map((achievement) => (
                             <motion.span
                               key={achievement}
                               whileHover={{ scale: 1.05, y: -1 }}
-                              className={`px-2.5 py-1 text-xs rounded-full bg-zinc-700/60 ${colorMap[event.color]} border border-zinc-600/30 flex items-center gap-1 backdrop-blur`}
+                              className={`px-2 sm:px-2.5 py-0.5 sm:py-1 text-xs rounded-full bg-zinc-700/60 ${colorMap[event.color]} border border-zinc-600/30 flex items-center gap-0.5 sm:gap-1 backdrop-blur`}
                             >
                               <span className="text-xs">✓</span> {achievement}
                             </motion.span>
@@ -338,23 +338,23 @@ export default function Timeline() {
 
         {/* Call-to-Action Section */}
         <motion.div
-          className="mt-20 pt-12 border-t border-zinc-700/50"
+          className="mt-12 sm:mt-16 md:mt-20 pt-8 sm:pt-10 md:pt-12 border-t border-zinc-700/50"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <div className="bg-gradient-to-r from-red-500/8 via-cyan-500/8 to-amber-500/8 rounded-2xl p-8 md:p-12 border border-zinc-700/50 backdrop-blur-sm text-center">
-            <h3 className="text-3xl font-bold text-white mb-4">What&apos;s Next?</h3>
-            <p className="text-gray-400 mb-8 max-w-2xl mx-auto leading-relaxed">
+          <div className="bg-gradient-to-r from-red-500/8 via-cyan-500/8 to-amber-500/8 rounded-lg sm:rounded-2xl p-4 sm:p-8 md:p-12 border border-zinc-700/50 backdrop-blur-sm text-center">
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-2 sm:mb-4">What&apos;s Next?</h3>
+            <p className="text-xs sm:text-sm md:text-base text-gray-400 mb-4 sm:mb-8 max-w-2xl mx-auto leading-relaxed">
               Currently focused on advanced AI research, system design, and creating meaningful digital experiences that seamlessly blend cutting-edge technology with human-centered design principles.
             </p>
-            <div className="flex gap-4 justify-center flex-wrap">
+            <div className="flex gap-2 sm:gap-4 justify-center flex-wrap">
               <motion.a
                 href="/projects"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.98 }}
-                className="px-8 py-3 rounded-lg bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-semibold transition-all shadow-lg hover:shadow-red-600/50"
+                className="px-4 sm:px-8 py-2 sm:py-3 text-xs sm:text-sm md:text-base rounded-lg bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-semibold transition-all shadow-lg hover:shadow-red-600/50"
               >
                 View Projects
               </motion.a>
@@ -362,7 +362,7 @@ export default function Timeline() {
                 href="#developer-section"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.98 }}
-                className="px-8 py-3 rounded-lg border-2 border-cyan-500 text-cyan-400 hover:bg-cyan-500/10 font-semibold transition-all shadow-lg hover:shadow-cyan-500/30"
+                className="px-4 sm:px-8 py-2 sm:py-3 text-xs sm:text-sm md:text-base rounded-lg border-2 border-cyan-500 text-cyan-400 hover:bg-cyan-500/10 font-semibold transition-all shadow-lg hover:shadow-cyan-500/30"
               >
                 Explore Skills
               </motion.a>
