@@ -98,11 +98,11 @@ const getColorHex = (color: string) => {
 }
 
 export default function Timeline() {
-  // Generate SVG wave path using sine wave - CENTER-RIGHT
   const amplitude = 90
   const frequency = 0.013
-  const totalHeight = timelineEvents.length * 220
-  const centerX = 200 // Center-right position (SVG units)
+  const cardSpacing = 220
+  const totalHeight = timelineEvents.length * cardSpacing
+  const centerX = 200
 
   let wavePath = "M "
   for (let y = 0; y < totalHeight; y += 12) {
@@ -113,18 +113,18 @@ export default function Timeline() {
   return (
     <div className="py-12 md:py-24 bg-zinc-900 min-h-screen">
       <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
-        <div className="mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 text-center">My Journey</h2>
-          <p className="text-gray-400 text-center max-w-2xl mx-auto">
+        <div className="mb-12 md:mb-16">
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-3 md:mb-4 text-center">My Journey</h2>
+          <p className="text-sm md:text-base text-gray-400 text-center max-w-2xl mx-auto">
             A 2.5D isometric voyage through growth, learning, and creative exploration
           </p>
         </div>
 
         {/* 2.5D Wave Timeline Container */}
         <div className="relative w-full" style={{ height: `${totalHeight + 200}px`, perspective: "1200px" }}>
-          {/* SVG Wave Path - CENTERED AND VISIBLE */}
+          {/* SVG Wave Path */}
           <svg
-            className="absolute top-0 left-0 w-full h-full pointer-events-none"
+            className="absolute top-0 left-0 w-full h-full pointer-events-none hidden sm:block"
             width="100%"
             height="100%"
             viewBox={`0 0 400 ${totalHeight}`}
@@ -134,7 +134,6 @@ export default function Timeline() {
             }}
           >
             <defs>
-              {/* Main wave gradient */}
               <linearGradient id="waveGradient" x1="0%" y1="0%" x2="0%" y2="100%">
                 <stop offset="0%" stopColor="#DC2626" stopOpacity="0.9" />
                 <stop offset="35%" stopColor="#F59E0B" stopOpacity="0.8" />
@@ -142,7 +141,6 @@ export default function Timeline() {
                 <stop offset="100%" stopColor="#B8E986" stopOpacity="0.7" />
               </linearGradient>
 
-              {/* Glow filter */}
               <filter id="waveGlow">
                 <feGaussianBlur stdDeviation="3" result="coloredBlur" />
                 <feMerge>
@@ -152,7 +150,7 @@ export default function Timeline() {
               </filter>
             </defs>
 
-            {/* Shadow/Depth layer - THICK AND VISIBLE */}
+            {/* Shadow layer */}
             <path
               d={wavePath}
               fill="none"
@@ -164,7 +162,7 @@ export default function Timeline() {
               }}
             />
 
-            {/* Main glow wave - THICK AND BRIGHT */}
+            {/* Main wave */}
             <path
               d={wavePath}
               fill="none"
@@ -175,7 +173,7 @@ export default function Timeline() {
               strokeLinejoin="round"
             />
 
-            {/* Highlight edge for depth - BRIGHT EDGE */}
+            {/* Highlight edge */}
             <path
               d={wavePath}
               fill="none"
@@ -187,188 +185,194 @@ export default function Timeline() {
           </svg>
 
           {/* Timeline Events */}
-          {timelineEvents.map((event, index) => {
-            const Icon = event.icon
-            const yPosition = index * 220 + 100
-            const waveX = Math.sin(yPosition * frequency) * amplitude + centerX
-            const isLeft = index % 2 === 0
+          <div className="relative sm:absolute sm:top-0 sm:left-0 sm:w-full sm:h-full">
+            {timelineEvents.map((event, index) => {
+              const Icon = event.icon
+              const yPosition = index * cardSpacing + 60
+              const isLeft = index % 2 === 0
 
-            const bgColor =
-              event.color === "red"
-                ? "bg-red-500/5 border-red-500/30 hover:border-red-500/60"
-                : event.color === "cyan"
-                  ? "bg-cyan-500/5 border-cyan-500/30 hover:border-cyan-500/60"
-                  : event.color === "lime"
-                    ? "bg-lime-500/5 border-lime-500/30 hover:border-lime-500/60"
-                    : "bg-amber-500/5 border-amber-500/30 hover:border-amber-500/60"
+              const bgColor =
+                event.color === "red"
+                  ? "bg-red-500/5 border-red-500/30 hover:border-red-500/60"
+                  : event.color === "cyan"
+                    ? "bg-cyan-500/5 border-cyan-500/30 hover:border-cyan-500/60"
+                    : event.color === "lime"
+                      ? "bg-lime-500/5 border-lime-500/30 hover:border-lime-500/60"
+                      : "bg-amber-500/5 border-amber-500/30 hover:border-amber-500/60"
 
-            return (
-              <motion.div
-                key={index}
-                className="absolute w-72 group"
-                style={{
-                  left: isLeft ? "1%" : "auto",
-                  right: isLeft ? "auto" : "1%",
-                  top: `${yPosition}px`,
-                  maxWidth: "calc(50% - 120px)",
-                }}
-                initial={{ opacity: 0, x: isLeft ? -50 : 50, y: 25, rotateY: isLeft ? 25 : -25 }}
-                whileInView={{ opacity: 1, x: 0, y: 0, rotateY: 0 }}
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.8, delay: index * 0.15, ease: "easeOut" }}
-              >
-                {/* Connecting line from card to wave */}
-                <svg
-                  className="absolute top-6 w-16 h-1 pointer-events-none"
+              return (
+                <motion.div
+                  key={index}
+                  className="w-full sm:absolute px-4 sm:px-0 group mb-8 sm:mb-0"
                   style={{
-                    right: isLeft ? "-64px" : "auto",
-                    left: isLeft ? "auto" : "-64px",
+                    left: isLeft ? 0 : "auto",
+                    right: isLeft ? "auto" : 0,
+                    top: `${yPosition}px`,
+                    maxWidth: "calc(100% - 32px)",
+                    width: "100%",
+                    position: "relative",
                   }}
-                  viewBox="0 0 64 1"
-                  preserveAspectRatio="none"
+                  initial={{ opacity: 0, x: isLeft ? -50 : 50, y: 25 }}
+                  whileInView={{ opacity: 1, x: 0, y: 0 }}
+                  viewport={{ once: true, margin: "-80px" }}
+                  transition={{ duration: 0.8, delay: index * 0.15, ease: "easeOut" }}
                 >
-                  <line
-                    x1="0"
-                    y1="0"
-                    x2="64"
-                    y2="0"
-                    stroke={getColorHex(event.color)}
-                    strokeWidth="1.5"
-                    opacity="0.6"
-                    style={{
-                      filter: `drop-shadow(0 0 3px ${getColorHex(event.color)})`,
-                    }}
-                  />
-                </svg>
+                  {/* Card Container */}
+                  <div className={`w-full sm:w-96 group ${isLeft ? "sm:left-0" : "sm:right-0"}`}>
+                    {/* Connecting line - Desktop only */}
+                    <svg
+                      className="absolute top-6 w-12 h-1 pointer-events-none hidden sm:block"
+                      style={{
+                        right: isLeft ? "-48px" : "auto",
+                        left: isLeft ? "auto" : "-48px",
+                      }}
+                      viewBox="0 0 48 1"
+                      preserveAspectRatio="none"
+                    >
+                      <line
+                        x1="0"
+                        y1="0"
+                        x2="48"
+                        y2="0"
+                        stroke={getColorHex(event.color)}
+                        strokeWidth="1.5"
+                        opacity="0.6"
+                        style={{
+                          filter: `drop-shadow(0 0 3px ${getColorHex(event.color)})`,
+                        }}
+                      />
+                    </svg>
 
-                {/* Event Card with 3D perspective */}
-                <div
-                  className={`relative p-6 rounded-xl border ${bgColor} backdrop-blur-sm transition-all duration-500 hover:shadow-2xl overflow-hidden`}
-                  style={{
-                    transform: `perspective(1000px) rotateY(${isLeft ? -8 : 8}deg) rotateX(2deg)`,
-                    transformStyle: "preserve-3d",
-                    boxShadow: `inset 0 1px 0 0 rgba(255,255,255,0.1), 0 10px 30px -5px ${getColorHex(event.color)}20`,
-                  }}
-                >
-                  {/* Background shimmer effect */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent rounded-xl pointer-events-none" />
+                    {/* Event Card */}
+                    <div
+                      className={`relative p-4 sm:p-6 rounded-xl border ${bgColor} backdrop-blur-sm transition-all duration-500 hover:shadow-2xl overflow-hidden`}
+                      style={{
+                        transform: `perspective(1000px) rotateY(${isLeft ? -8 : 8}deg) rotateX(2deg)`,
+                        transformStyle: "preserve-3d",
+                        boxShadow: `inset 0 1px 0 0 rgba(255,255,255,0.1), 0 10px 30px -5px ${getColorHex(event.color)}20`,
+                      }}
+                    >
+                      {/* Shimmer effect */}
+                      <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent rounded-xl pointer-events-none" />
 
-                  {/* Content */}
-                  <div className="relative z-10">
-                    {/* Icon and Year */}
-                    <div className="flex items-center gap-2 mb-3">
-                      {Icon && (
-                        <motion.div
-                          whileHover={{ rotate: 12, scale: 1.1 }}
-                          transition={{ type: "spring", stiffness: 200 }}
-                        >
-                          <Icon className={`w-5 h-5 ${colorMap[event.color]}`} />
-                        </motion.div>
-                      )}
-                      <p className={`text-sm font-bold ${colorMap[event.color]} uppercase tracking-wide`}>{event.year}</p>
+                      {/* Content */}
+                      <div className="relative z-10">
+                        {/* Icon and Year */}
+                        <div className="flex items-center gap-2 mb-3">
+                          {Icon && (
+                            <motion.div
+                              whileHover={{ rotate: 12, scale: 1.1 }}
+                              transition={{ type: "spring", stiffness: 200 }}
+                            >
+                              <Icon className={`w-4 h-4 sm:w-5 sm:h-5 ${colorMap[event.color]}`} />
+                            </motion.div>
+                          )}
+                          <p className={`text-xs sm:text-sm font-bold ${colorMap[event.color]} uppercase tracking-wide`}>
+                            {event.year}
+                          </p>
+                        </div>
+
+                        {/* Title */}
+                        <h3 className="text-base sm:text-lg md:text-xl font-bold text-white mb-2 group-hover:text-red-400 transition-colors">
+                          {event.title}
+                        </h3>
+
+                        {/* Description */}
+                        <p className="text-xs sm:text-sm text-gray-400 leading-relaxed mb-3">{event.description}</p>
+
+                        {/* Skills - Desktop only */}
+                        {event.skills && event.skills.length > 0 && (
+                          <div className="mb-3 relative z-10 hidden sm:block">
+                            <p className="text-xs text-gray-500 mb-2">Skills</p>
+                            <div className="flex flex-wrap gap-1">
+                              {event.skills.slice(0, 3).map((skill) => (
+                                <span
+                                  key={skill}
+                                  className="px-2 py-1 text-xs rounded-full bg-zinc-700/50 text-gray-300 border border-zinc-600/50"
+                                >
+                                  {skill}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+
+                        {/* Achievements - Show all */}
+                        {event.achievements && event.achievements.length > 0 && (
+                          <div className="relative z-10">
+                            <p className="text-xs text-gray-500 mb-2">Achievements</p>
+                            <div className="flex flex-wrap gap-1">
+                              {event.achievements.map((achievement) => (
+                                <span
+                                  key={achievement}
+                                  className={`px-2 py-1 text-xs rounded-full bg-zinc-700 ${
+                                    colorMap[event.color].split(" ")[0]
+                                  } border border-zinc-600/30 flex items-center gap-1`}
+                                >
+                                  <span>✓</span> {achievement}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                      </div>
                     </div>
 
-                    {/* Title */}
-                    <h3 className="text-lg font-bold text-white mb-2 group-hover:text-red-400 transition-colors duration-300 line-clamp-2">
-                      {event.title}
-                    </h3>
-
-                    {/* Description */}
-                    <p className="text-sm text-gray-400 leading-relaxed mb-4 line-clamp-2">{event.description}</p>
-
-                    {/* Skills Tags */}
-                    {event.skills && event.skills.length > 0 && (
-                      <div className="mb-3">
-                        <p className="text-xs text-gray-500 mb-2 font-semibold">Skills</p>
-                        <div className="flex flex-wrap gap-2">
-                          {event.skills.slice(0, 2).map((skill) => (
-                            <motion.span
-                              key={skill}
-                              whileHover={{ scale: 1.05 }}
-                              className="px-2.5 py-1 text-xs rounded-full bg-zinc-700/40 text-gray-300 border border-zinc-600/50 backdrop-blur"
-                            >
-                              {skill}
-                            </motion.span>
-                          ))}
-                          {event.skills.length > 2 && (
-                            <span className="px-2.5 py-1 text-xs rounded-full bg-zinc-700/40 text-gray-400 border border-zinc-600/50">
-                              +{event.skills.length - 2}
-                            </span>
-                          )}
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Achievements */}
-                    {event.achievements && event.achievements.length > 0 && (
-                      <div>
-                        <p className="text-xs text-gray-500 mb-2 font-semibold">Achievements</p>
-                        <div className="flex flex-wrap gap-2">
-                          {event.achievements.map((achievement) => (
-                            <motion.span
-                              key={achievement}
-                              whileHover={{ scale: 1.05, y: -1 }}
-                              className={`px-2.5 py-1 text-xs rounded-full bg-zinc-700/60 ${colorMap[event.color]} border border-zinc-600/30 flex items-center gap-1 backdrop-blur`}
-                            >
-                              <span className="text-xs">✓</span> {achievement}
-                            </motion.span>
-                          ))}
-                        </div>
-                      </div>
-                    )}
+                    {/* Timeline dot - Desktop only */}
+                    <div
+                      className="absolute top-8 w-5 h-5 rounded-full border-4 border-zinc-900 transform transition-all duration-300 group-hover:scale-150 group-hover:shadow-lg hidden sm:block"
+                      style={{
+                        left: isLeft ? "100%" : "auto",
+                        right: isLeft ? "auto" : "100%",
+                        marginLeft: isLeft ? "20px" : "0",
+                        marginRight: isLeft ? "0" : "20px",
+                        backgroundColor:
+                          event.color === "red"
+                            ? "#DC2626"
+                            : event.color === "cyan"
+                              ? "#22D3EE"
+                              : event.color === "lime"
+                                ? "#B8E986"
+                                : "#F59E0B",
+                        boxShadow: getGlow(event.color),
+                      }}
+                    />
                   </div>
-                </div>
-
-                {/* Timeline dot on wave */}
-                <motion.div
-                  className="absolute top-6 w-4 h-4 rounded-full border-3 border-zinc-900 shadow-lg"
-                  style={{
-                    right: isLeft ? "-32px" : "auto",
-                    left: isLeft ? "auto" : "-32px",
-                    backgroundColor: getColorHex(event.color),
-                    boxShadow: `${getGlow(event.color)}, inset 0 1px 2px rgba(255,255,255,0.3)`,
-                  }}
-                  whileHover={{ scale: 1.8, filter: `drop-shadow(0 0 15px ${getColorHex(event.color)})` }}
-                  transition={{ type: "spring", stiffness: 300, damping: 10 }}
-                />
-              </motion.div>
-            )
-          })}
+                </motion.div>
+              )
+            })}
+          </div>
         </div>
 
         {/* Call-to-Action Section */}
-        <motion.div
-          className="mt-20 pt-12 border-t border-zinc-700/50"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-        >
-          <div className="bg-gradient-to-r from-red-500/8 via-cyan-500/8 to-amber-500/8 rounded-2xl p-8 md:p-12 border border-zinc-700/50 backdrop-blur-sm text-center">
-            <h3 className="text-3xl font-bold text-white mb-4">What&apos;s Next?</h3>
-            <p className="text-gray-400 mb-8 max-w-2xl mx-auto leading-relaxed">
-              Currently focused on advanced AI research, system design, and creating meaningful digital experiences that seamlessly blend cutting-edge technology with human-centered design principles.
+        <div className="mt-24 pt-8 border-t border-zinc-700">
+          <motion.div
+            className="bg-gradient-to-r from-red-500/5 to-cyan-500/5 rounded-lg p-6 sm:p-8 border border-zinc-700 text-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h3 className="text-xl sm:text-2xl font-bold text-white mb-3">What&apos;s Next?</h3>
+            <p className="text-xs sm:text-sm text-gray-400 mb-6 max-w-xl mx-auto">
+              Currently focusing on advanced AI research, system design, and creating meaningful digital experiences that blend technology with human-centered design.
             </p>
-            <div className="flex gap-4 justify-center flex-wrap">
-              <motion.a
+            <div className="flex gap-3 sm:gap-4 justify-center flex-wrap">
+              <a
                 href="/projects"
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.98 }}
-                className="px-8 py-3 rounded-lg bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-semibold transition-all shadow-lg hover:shadow-red-600/50"
+                className="px-4 sm:px-6 py-2 rounded-lg bg-red-600 hover:bg-red-700 text-white text-sm sm:text-base font-semibold transition-colors"
               >
                 View Projects
-              </motion.a>
-              <motion.a
+              </a>
+              <a
                 href="#developer-section"
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.98 }}
-                className="px-8 py-3 rounded-lg border-2 border-cyan-500 text-cyan-400 hover:bg-cyan-500/10 font-semibold transition-all shadow-lg hover:shadow-cyan-500/30"
+                className="px-4 sm:px-6 py-2 rounded-lg border border-cyan-500 text-cyan-400 hover:bg-cyan-500/10 text-sm sm:text-base font-semibold transition-colors"
               >
                 Explore Skills
-              </motion.a>
+              </a>
             </div>
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
       </div>
     </div>
   )
