@@ -3,13 +3,15 @@
 import type React from "react"
 import Link from "next/link"
 import { Github } from "lucide-react"
-import { LoadingScreen } from "@/components/loading-screen"
 
 function Navigation() {
-  const scrollToContact = () => {
+  const handleContactClick = () => {
     const element = document.getElementById("connect-section")
     if (element) {
       element.scrollIntoView({ behavior: "smooth" })
+    } else {
+      // Navigate to home and scroll to connect section
+      window.location.href = "/#connect-section"
     }
   }
 
@@ -22,7 +24,7 @@ function Navigation() {
         About
       </Link>
       <button
-        onClick={scrollToContact}
+        onClick={handleContactClick}
         className="font-bold text-red-600 hover:text-red-500 transition-colors"
       >
         Contact
@@ -64,7 +66,6 @@ export default function ClientLayout({
 }) {
   return (
     <>
-      <LoadingScreen />
       <header className="max-w-[1400px] mx-auto px-6 lg:px-8">
         <div className="flex justify-end items-center py-8">
           <Navigation />

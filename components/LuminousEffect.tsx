@@ -5,7 +5,7 @@ import { useEffect, useState } from "react"
 
 export const LuminousEffect = () => {
   const { scrollYProgress } = useScroll()
-  const [windowHeight, setWindowHeight] = useState(0)
+  const [windowHeight, setWindowHeight] = useState<number | null>(null)
 
   useEffect(() => {
     setWindowHeight(window.innerHeight)
@@ -14,7 +14,7 @@ export const LuminousEffect = () => {
     return () => window.removeEventListener("resize", handleResize)
   }, [])
 
-  const yRange = useTransform(scrollYProgress, [0, 1], [windowHeight * -1, windowHeight * 2])
+  const yRange = useTransform(scrollYProgress, [0, 1], [windowHeight ? windowHeight * -1 : 0, windowHeight ? windowHeight * 2 : 0])
 
   return (
     <motion.div
