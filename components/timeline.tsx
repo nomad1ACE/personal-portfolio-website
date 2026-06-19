@@ -205,12 +205,11 @@ export default function Timeline() {
             return (
               <motion.div
                 key={index}
-                className="absolute w-56 sm:w-64 md:w-72 group"
+                className="absolute w-56 sm:w-64 md:w-72 group max-w-[calc(100%-1rem)] sm:max-w-[calc(100%-2rem)] md:max-w-[calc(50%-120px)]"
                 style={{
                   left: isLeft ? "0.5rem" : "auto",
                   right: isLeft ? "auto" : "0.5rem",
                   top: `${yPosition}px`,
-                  maxWidth: window.innerWidth < 640 ? "calc(100% - 1rem)" : window.innerWidth < 768 ? "calc(100% - 2rem)" : "calc(50% - 120px)",
                 }}
                 initial={{ opacity: 0, x: isLeft ? -50 : 50, y: 25, rotateY: isLeft ? 25 : -25 }}
                 whileInView={{ opacity: 1, x: 0, y: 0, rotateY: 0 }}
@@ -304,11 +303,11 @@ export default function Timeline() {
                       <div>
                         <p className="text-xs text-gray-500 mb-1.5 sm:mb-2 font-semibold">Achievements</p>
                         <div className="flex flex-wrap gap-1 sm:gap-2">
-                          {event.achievements.slice(0, window.innerWidth < 640 ? 1 : 2).map((achievement) => (
+                          {event.achievements.slice(0, 2).map((achievement, idx) => (
                             <motion.span
                               key={achievement}
                               whileHover={{ scale: 1.05, y: -1 }}
-                              className={`px-2 sm:px-2.5 py-0.5 sm:py-1 text-xs rounded-full bg-zinc-700/60 ${colorMap[event.color]} border border-zinc-600/30 flex items-center gap-0.5 sm:gap-1 backdrop-blur`}
+                              className={`px-2 sm:px-2.5 py-0.5 sm:py-1 text-xs rounded-full bg-zinc-700/60 ${colorMap[event.color]} border border-zinc-600/30 flex items-center gap-0.5 sm:gap-1 backdrop-blur ${idx > 0 ? "hidden sm:flex" : ""}`}
                             >
                               <span className="text-xs">✓</span> {achievement}
                             </motion.span>
@@ -359,7 +358,7 @@ export default function Timeline() {
                 View Projects
               </motion.a>
               <motion.a
-                href="#developer-section"
+                href="/#developer-section"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.98 }}
                 className="px-4 sm:px-8 py-2 sm:py-3 text-xs sm:text-sm md:text-base rounded-lg border-2 border-cyan-500 text-cyan-400 hover:bg-cyan-500/10 font-semibold transition-all shadow-lg hover:shadow-cyan-500/30"
